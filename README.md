@@ -63,3 +63,12 @@ Steps:
    
 
    You should now be able to see the nodes in the cluster.
+---
+
+to get config file go to ubuntu user or root user and type this command 
+
+cat ~/.kube/config | base64
+
+---
+
+
