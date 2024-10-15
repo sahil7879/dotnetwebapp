@@ -29,3 +29,18 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/gitimage:latest
+  deploy:
+    runs-on: kube-master
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up kubectl
+        uses: azure/k8s-set-context@v2
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+      
+      - name: Apply Kubernetes Deployment
+        run: kubectl apply -f k8s/deployment.yaml
