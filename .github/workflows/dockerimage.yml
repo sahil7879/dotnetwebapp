@@ -40,6 +40,6 @@ jobs:
         
       - name: Update Kubernetes Deployment with new Docker image
         run: |
-          kubectl delete deploy --my-app
+          kubectl delete deploy my-app
           kubectl create deploy my-app --image sahiljangra/gitimage:latest --replicas 2
   
