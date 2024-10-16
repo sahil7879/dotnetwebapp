@@ -42,4 +42,7 @@ jobs:
         run: |
           kubectl delete deploy my-app
           kubectl create deploy my-app --image sahiljangra/gitimage:latest --replicas 2
+          kubectl delete svc my-app
+          kubectl expose deployment myapp --type=NodePort --port=80 --target-port=8080 --node-port=34567
+
   
