@@ -3,12 +3,12 @@ name: Build, Push Docker Image
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
-  workflow_dispatch:  # Allows manual trigger of the workflow
+      - main 
+  workflow_dispatch:  
 
 jobs:
   build:
-    runs-on: docker-runner  # Ensure you have a self-hosted runner with Docker installed
+    runs-on: kube-master  
 
     steps:
       - name: Checkout code
