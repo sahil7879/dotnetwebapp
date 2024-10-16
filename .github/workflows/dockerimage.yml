@@ -42,15 +42,9 @@ jobs:
         run: 
           kubectl delete deploy my-app
         continue-on-error: true
-       
-      - name: deleting the previous service
-        run:
-          kubectl delete svc my-app
-        continue-on-error: true   
-      
+             
       - name: run a new deployment and service
         run: |
           kubectl create deploy my-app --image sahiljangra/gitimage:latest --replicas 2
-          kubectl expose deployment my-app --type=NodePort --port=80 --target-port=8080 --name=my-app
-          kubectl describe svc my-app
+          
   
