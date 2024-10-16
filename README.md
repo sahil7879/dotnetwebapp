@@ -1,3 +1,8 @@
+to make docker available for ubuntu user 
+sudo usermod -aG docker ubuntu
+sudo systemctl restart docker 
+
+
 Set Up `kubectl` for the Non-Root User (`ubuntu` User)**
 
 When you initialize Kubernetes using `kubeadm`, it generates a `kubeconfig` file located at `/etc/kubernetes/admin.conf` that contains the cluster’s configuration and authentication information. By default, only the root user can access it.
@@ -70,5 +75,6 @@ to get config file go to ubuntu user or root user and type this command
 cat ~/.kube/config | base64
 
 ---
+
 
 
