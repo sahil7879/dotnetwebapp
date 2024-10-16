@@ -47,7 +47,6 @@ jobs:
       - name: run a new deployment and service
         run: |
           kubectl create deploy my-app --image sahiljangra/gitimage:latest --replicas 2
-          sleep 30
-          kubectl expose deployment myapp --type=NodePort --port=80 --target-port=8080 --name=my-app
+          kubectl expose deployment my-app --type=NodePort --port=80 --target-port=8080 --name=my-app
 
   
