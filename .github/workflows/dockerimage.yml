@@ -37,17 +37,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Wait for Docker image to be available
-        run: sleep 60  
-
-      - name: Set up Kubeconfig
-        run: |
-          echo "${{ secrets.KUBECONFIG_BASE64 }}" | base64 --decode > $HOME/.kube/config
-          chmod 600 $HOME/.kube/config
-
+        
       - name: Update Kubernetes Deployment with new Docker image
         run: |
-          kubectl set image deployment/my-app my-app-container=${{ secrets.DOCKER_USERNAME }}/gitimage:latest
+          kubectl set image deployment/my-app ${{ secrets.DOCKER_USERNAME }}/gitimage:latest=${{ secrets.DOCKER_USERNAME }}/gitimage:latest
           kubectl rollout status deployment/my-app
   
