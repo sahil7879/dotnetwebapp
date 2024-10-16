@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted  # Ensure you have a self-hosted runner with Docker installed
+    runs-on: docker-runner  # Ensure you have a self-hosted runner with Docker installed
 
     steps:
       - name: Checkout code
