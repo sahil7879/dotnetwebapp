@@ -38,12 +38,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
         
-      - name: deleting the previous deployment and service
+      - name: deleting the previous deployment
         run: 
           kubectl delete deploy my-app
-          kubectl delete svc my-app
         continue-on-error: true
-          
+       
+      - name: deleting the previous service
+        run:
+          kubectl delete svc my-app
+        continue-on-error: true   
+      
       - name: run a new deployment and service
         run: |
           kubectl create deploy my-app --image sahiljangra/gitimage:latest --replicas 2
