@@ -17,7 +17,7 @@ Steps:
 
    If you're not already the `root` user, switch to the `root` user or use `sudo`:
 
-   ``` bash
+   ```bash
    sudo -i
    ```
 
@@ -25,7 +25,7 @@ Steps:
 
    Create the Kubernetes config directory in the home directory of the `ubuntu` user:
 
-   ``` bash
+   ```bash
    mkdir -p /home/ubuntu/.kube
    ```
 
@@ -33,7 +33,7 @@ Steps:
 
    Copy the `admin.conf` file (which contains the Kubernetes cluster configuration) to the `.kube` directory of the `ubuntu` user:
 
-   ``` bash
+   ```bash
    sudo cp /etc/kubernetes/admin.conf /home/ubuntu/.kube/config
    ```
 
@@ -49,7 +49,7 @@ Steps:
 
    Ensure the permissions are correct for the `.kube/config` file:
 
-   ``` bash
+   ```bash
    sudo chmod 600 /home/ubuntu/.kube/config
    ```
 
@@ -57,7 +57,7 @@ Steps:
 
    Now switch back to the `ubuntu` user to test the setup:
 
-   ``` bash
+   ```bash
    su - ubuntu
    ```
 
@@ -65,7 +65,7 @@ Steps:
 
    Run a Kubernetes command to verify that the non-root user can interact with the cluster:
 
-   ``` bash
+   ```bash
    kubectl get nodes
    ```
 
