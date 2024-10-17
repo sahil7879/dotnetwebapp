@@ -1,3 +1,11 @@
+for this pipeline we need 3 secrets saved first 
+
+KUBECONFIG
+DOCKER_USERNAME
+DOCKER_PASSWORD
+
+we also need ubuntu user access to kubernetes and docker commands
+
 to make docker available for ubuntu user 
 
 ```bash
