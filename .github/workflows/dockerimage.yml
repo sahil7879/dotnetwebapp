@@ -1,9 +1,9 @@
-name: Build, Push Docker Image
+name: Build, Push Docker Image and deploy on kubernetes
 
 on:
-  push:
-    branches:
-      - main 
+ # push:
+   # branches:
+   #   - main 
   workflow_dispatch:  
 
 jobs:
@@ -39,12 +39,31 @@ jobs:
         uses: actions/checkout@v3
         
       - name: deleting the previous deployment
-        run: 
+        run: |
           kubectl delete deploy my-app
+          kubectl delete svc extsvc intsvc
         continue-on-error: true
              
       - name: run a new deployment and service
         run: |
-          kubectl create deploy my-app --image sahiljangra/gitimage:latest --replicas 2
-          
+          kubectl create deploy my-app --image ${{ secrets.DOCKER_USERNAME }}/gitimage:latest --replicas 2
+          echo"
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: extsvc
+            labels:
+              run: extsvc
+          spec:
+            ports:
+            - port: 80
+              protocol: TCP
+              targetPort: 8080
+              nodePort: 30008
+            selector:
+              app: my-app
+            type: NodePort
+          ">>extsvc.yaml
+          kubectl apply -f extsvc.yaml
+          k expose deploy my-app --name intsvc --type ClusterIP --port 80 --target-port 8080
   
