@@ -47,23 +47,6 @@ jobs:
       - name: run a new deployment and service
         run: |
           kubectl create deploy my-app --image ${{ secrets.DOCKER_USERNAME }}/gitimage:latest --replicas 2
-          echo"
-          apiVersion: v1
-          kind: Service
-          metadata:
-            name: extsvc
-            labels:
-              run: extsvc
-          spec:
-            ports:
-            - port: 80
-              protocol: TCP
-              targetPort: 8080
-              nodePort: 30008
-            selector:
-              app: my-app
-            type: NodePort
-          ">>extsvc.yaml
           kubectl apply -f extsvc.yaml
           k expose deploy my-app --name intsvc --type ClusterIP --port 80 --target-port 8080
   
