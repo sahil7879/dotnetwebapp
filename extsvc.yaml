@@ -1,1 +1,15 @@
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: extsvc
+  labels:
+    run: extsvc
+spec:
+  ports:
+    - port: 80
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30008
+  selector:
+    app: my-app
+  type: NodePort
