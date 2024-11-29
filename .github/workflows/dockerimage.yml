@@ -48,5 +48,5 @@ jobs:
         run: |
           kubectl create deploy my-app --image ${{ secrets.DOCKER_USERNAME }}/gitimage:latest --replicas 2
           kubectl apply -f extsvc.yaml
-          k expose deploy my-app --name intsvc --type ClusterIP --port 80 --target-port 8080
+          kubectl expose deploy my-app --name intsvc --type ClusterIP --port 80 --target-port 8080
   
